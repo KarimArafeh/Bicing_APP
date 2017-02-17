@@ -45,7 +45,6 @@ public class Api {
                 Gson g = new Gson();
 
                 Bicing StationInfo = g.fromJson(object.toString(),Bicing.class);
-                //Log.d("---------------------", StationInfo.toString());
 
                 Stations.add(StationInfo);
 

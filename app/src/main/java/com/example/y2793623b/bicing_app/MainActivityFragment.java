@@ -171,7 +171,7 @@ public class MainActivityFragment extends Fragment {
                 Log.d("ESTACION ----------_>",B.toString());
                 GeoPoint point = new GeoPoint(
                         B.getLatitude(),
-                        B.getLongitud()
+                        B.getLongitude()
                 );
 
 
@@ -207,7 +207,7 @@ public class MainActivityFragment extends Fragment {
         bicingMarkers = new RadiusMarkerClusterer(getContext());
         map.getOverlays().add(bicingMarkers);
 
-        Drawable clusterIconD = getResources().getDrawable(R.drawable.agrupar);
+        Drawable clusterIconD = getResources().getDrawable(R.mipmap.ic_launcher);
         Bitmap clusterIcon = ((BitmapDrawable)clusterIconD).getBitmap();
 
         bicingMarkers.setIcon(clusterIcon);

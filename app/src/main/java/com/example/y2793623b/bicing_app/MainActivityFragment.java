@@ -5,10 +5,14 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -26,6 +30,7 @@ import org.osmdroid.views.overlay.compass.InternalCompassOrientationProvider;
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 /**
@@ -45,7 +50,7 @@ public class MainActivityFragment extends Fragment {
     private ScaleBarOverlay mScaleBarOverlay;
     private CompassOverlay mCompassOverlay;
     private MinimapOverlay mMinimapOverlay;
-    private RadiusMarkerClusterer parkingMarkers;
+    private RadiusMarkerClusterer bicingMarkers;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,6 +71,31 @@ public class MainActivityFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+    //Agreguem els items de menu
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+            super.onCreateOptionsMenu(menu, inflater);
+            inflater.inflate(R.menu.menu_main, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+        if(id == R.id.action_markers)
+        {
+            Log.d("jkgdf","kgbsdjkfs");
+            putMarkers();
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
 
     private void initializeMap() {
@@ -134,10 +164,11 @@ public class MainActivityFragment extends Fragment {
 
         setupMarkerOverlay();
         if (staciones != null) {
-//            Log.d("LOG", staciones.get(0).toString());
+
             for (Bicing B : staciones) {
                 Marker marker = new Marker(map);
 
+                Log.d("ESTACION ----------_>",B.toString());
                 GeoPoint point = new GeoPoint(
                         B.getLatitude(),
                         B.getLongitud()
@@ -152,8 +183,8 @@ public class MainActivityFragment extends Fragment {
                 marker.setTitle(B.getStreetName());
                 marker.setAlpha(0.6f);
 
-                parkingMarkers.add(marker);
-                parkingMarkers.invalidate();
+                bicingMarkers.add(marker);
+                bicingMarkers.invalidate();
                 map.invalidate();
 
             }
@@ -173,14 +204,14 @@ public class MainActivityFragment extends Fragment {
 
     private void setupMarkerOverlay() {
 
-        parkingMarkers = new RadiusMarkerClusterer(getContext());
-        map.getOverlays().add(parkingMarkers);
+        bicingMarkers = new RadiusMarkerClusterer(getContext());
+        map.getOverlays().add(bicingMarkers);
 
-        Drawable clusterIconD = getResources().getDrawable(R.drawable.bike);
+        Drawable clusterIconD = getResources().getDrawable(R.drawable.agrupar);
         Bitmap clusterIcon = ((BitmapDrawable)clusterIconD).getBitmap();
 
-        parkingMarkers.setIcon(clusterIcon);
-        parkingMarkers.setRadius(100);
+        bicingMarkers.setIcon(clusterIcon);
+        bicingMarkers.setRadius(100);
     }
 
 
@@ -190,6 +221,7 @@ public class MainActivityFragment extends Fragment {
         protected Void doInBackground(Void... voids) {
 
             staciones = Api.cogerDatos();
+
 
             return null;
         }
@@ -202,6 +234,7 @@ public class MainActivityFragment extends Fragment {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            //putMarkers();
         }
     }
 }

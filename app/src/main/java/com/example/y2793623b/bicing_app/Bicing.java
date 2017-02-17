@@ -11,7 +11,7 @@ public class Bicing {
     private int id;
     private String type;
     private double latitude;
-    private double Longitud;
+    private double longitude;
     private String streetName;
     //private int streetNumber;
     //private int altitude;
@@ -45,12 +45,12 @@ public class Bicing {
         this.latitude = latitude;
     }
 
-    public double getLongitud() {
-        return Longitud;
+    public double getLongitude() {
+        return longitude;
     }
 
-    public void setLongitud(double longitud) {
-        Longitud = longitud;
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
     public String getStreetName() {
@@ -77,14 +77,13 @@ public class Bicing {
         this.nearbyStations = nearbyStations;
     }
 
-
     @Override
     public String toString() {
         return "Bicing{" +
                 "id=" + id +
                 ", type='" + type + '\'' +
                 ", latitude=" + latitude +
-                ", Longitud=" + Longitud +
+                ", longitude=" + longitude +
                 ", streetName='" + streetName + '\'' +
                 ", bikes=" + bikes +
                 ", nearbyStations='" + nearbyStations + '\'' +

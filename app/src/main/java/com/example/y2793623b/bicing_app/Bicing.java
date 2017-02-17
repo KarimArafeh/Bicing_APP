@@ -8,25 +8,24 @@ public class Bicing {
 
 
 
-    private String id;
+    private int id;
     private String type;
-    private String latitude;
+    private double latitude;
+    private double Longitud;
     private String streetName;
-    private String streetNumber;
-    private String altitude;
-    private String slots;
-    private String bikes;
+    //private int streetNumber;
+    //private int altitude;
+    //private int slots;
+    private int bikes;
     private String nearbyStations;
-    private String status;
+    //private String status;
 
 
-
-
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -38,12 +37,20 @@ public class Bicing {
         this.type = type;
     }
 
-    public String getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(String latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
+    }
+
+    public double getLongitud() {
+        return Longitud;
+    }
+
+    public void setLongitud(double longitud) {
+        Longitud = longitud;
     }
 
     public String getStreetName() {
@@ -54,35 +61,11 @@ public class Bicing {
         this.streetName = streetName;
     }
 
-    public String getStreetNumber() {
-        return streetNumber;
-    }
-
-    public void setStreetNumber(String streetNumber) {
-        this.streetNumber = streetNumber;
-    }
-
-    public String getSlots() {
-        return slots;
-    }
-
-    public void setSlots(String slots) {
-        this.slots = slots;
-    }
-
-    public String getAltitude() {
-        return altitude;
-    }
-
-    public void setAltitude(String altitude) {
-        this.altitude = altitude;
-    }
-
-    public String getBikes() {
+    public int getBikes() {
         return bikes;
     }
 
-    public void setBikes(String bikes) {
+    public void setBikes(int bikes) {
         this.bikes = bikes;
     }
 
@@ -94,29 +77,17 @@ public class Bicing {
         this.nearbyStations = nearbyStations;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     @Override
     public String toString() {
         return "Bicing{" +
-                "id='" + id + '\'' +
+                "id=" + id +
                 ", type='" + type + '\'' +
-                ", latitude='" + latitude + '\'' +
+                ", latitude=" + latitude +
+                ", Longitud=" + Longitud +
                 ", streetName='" + streetName + '\'' +
-                ", streetNumber='" + streetNumber + '\'' +
-                ", altitude='" + altitude + '\'' +
-                ", slots='" + slots + '\'' +
-                ", bikes='" + bikes + '\'' +
+                ", bikes=" + bikes +
                 ", nearbyStations='" + nearbyStations + '\'' +
-                ", status='" + status + '\'' +
                 '}';
     }
-
-
 }

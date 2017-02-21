@@ -15,7 +15,7 @@ public class Bicing {
     private String streetName;
     //private int streetNumber;
     //private int altitude;
-    //private int slots;
+    private int slots;
     private int bikes;
     private String nearbyStations;
     //private String status;
@@ -61,6 +61,14 @@ public class Bicing {
         this.streetName = streetName;
     }
 
+    public int getSlots() {
+        return slots;
+    }
+
+    public void setSlots(int slots) {
+        this.slots = slots;
+    }
+
     public int getBikes() {
         return bikes;
     }
@@ -77,6 +85,8 @@ public class Bicing {
         this.nearbyStations = nearbyStations;
     }
 
+
+
     @Override
     public String toString() {
         return "Bicing{" +
@@ -85,6 +95,7 @@ public class Bicing {
                 ", latitude=" + latitude +
                 ", longitude=" + longitude +
                 ", streetName='" + streetName + '\'' +
+                ", slots=" + slots +
                 ", bikes=" + bikes +
                 ", nearbyStations='" + nearbyStations + '\'' +
                 '}';

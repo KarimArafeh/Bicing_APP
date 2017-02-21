@@ -30,7 +30,6 @@ import org.osmdroid.views.overlay.compass.InternalCompassOrientationProvider;
 import org.osmdroid.views.overlay.mylocation.GpsMyLocationProvider;
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
 /**
@@ -90,7 +89,6 @@ public class MainActivityFragment extends Fragment {
         int id = item.getItemId();
         if(id == R.id.action_markers)
         {
-            Log.d("jkgdf","kgbsdjkfs");
             putMarkers();
         }
 
@@ -179,9 +177,77 @@ public class MainActivityFragment extends Fragment {
                 marker.setPosition(point);
 
                 marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM);
-                marker.setIcon(getResources().getDrawable(R.drawable.bike));
-                marker.setTitle(B.getStreetName());
+                //cuando le damos click al icono nos sale :
+                marker.setTitle("En el calle : " + B.getStreetName() + "\n hay : " + B.getBikes() + " bicicletas.");
                 marker.setAlpha(0.6f);
+
+                if(B.getBikes() != 0 && B.getSlots() != 0)
+                {
+                    int ocupacion = ((B.getBikes() * 100)/(B.getBikes() + B.getSlots()));
+
+                    if(B.getType().equals("BIKE"))
+                    {
+                        //un icono de una bici
+                        if(ocupacion == 0 )
+                        {
+                            //de color azul
+                            marker.setIcon(getResources().getDrawable(R.drawable.bike));
+                        }
+                        else if(ocupacion > 0 && ocupacion <= 25)
+                        {
+                            //de color gris
+                            marker.setIcon(getResources().getDrawable(R.drawable.bikegris));
+                        }
+                        else if(ocupacion > 25 && ocupacion <= 50)
+                        {
+                            //de color amarillo
+                            marker.setIcon(getResources().getDrawable(R.drawable.bikeamarillo));
+                        }
+                        else if(ocupacion > 50 && ocupacion <= 75)
+                        {
+                            //de color verde
+                            marker.setIcon(getResources().getDrawable(R.drawable.bikeverde));
+                        }
+                        else if(ocupacion > 75 && ocupacion <= 100)
+                        {
+                            //de color rojo
+                            marker.setIcon(getResources().getDrawable(R.drawable.bikerojo));
+                        }
+                    }
+                    else if(B.getType().equals("BIKE-ELECTRIC"))
+                    {
+                        //un icono de un moto
+                        if(ocupacion == 0 )
+                        {
+                            //de color azul
+                            marker.setIcon(getResources().getDrawable(R.drawable.motorbike));
+                        }
+                        else if(ocupacion > 0 && ocupacion <= 25)
+                        {
+                            //de color gris
+                            marker.setIcon(getResources().getDrawable(R.drawable.motorbikegris));
+                        }
+                        else if(ocupacion > 25 && ocupacion <= 50)
+                        {
+                            //de color amarillo
+                            marker.setIcon(getResources().getDrawable(R.drawable.motorbikeamarillo));
+                        }
+                        else if(ocupacion > 50 && ocupacion <= 75)
+                        {
+                            //de color verde
+                            marker.setIcon(getResources().getDrawable(R.drawable.motorbikeverde));
+                        }
+                        else if(ocupacion > 75 && ocupacion <= 100)
+                        {
+                            //de color rojo
+                            marker.setIcon(getResources().getDrawable(R.drawable.motorbikerojo));
+                        }
+                    }
+                }
+
+
+
+
 
                 bicingMarkers.add(marker);
                 bicingMarkers.invalidate();
